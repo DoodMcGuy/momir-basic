@@ -1,5 +1,3 @@
-import { kill } from "process";
-
 if (process.argv.length < 3) {
     throw Error('Missing CMC argument!');
 } 
