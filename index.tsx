@@ -13,5 +13,7 @@ async function getCreature(cmc: string) {
         method: 'GET'
     });
 
-    return await res.json();
+    const body = await res.json();
+    const selectedCard = Math.floor(Math.random() * body.total_cards + 1) + 1
+    return selectedCard;
 }
