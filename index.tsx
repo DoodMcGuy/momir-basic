@@ -28,8 +28,14 @@ async function getCreature(cmc: string) {
         const pagedRes = await fetch(new URL(pagedUrl), {method: 'GET'});
         const pagedBody = await pagedRes.json();
         
-        return pagedBody.data[pagedCard];    
+        return {
+            name: pagedBody.data[pagedCard].name,
+            card_uri: pagedBody.data[pagedCard].uri
+        };    
     }
 
-    return body.data[selectedCard];
+    return {
+        name: body.data[selectedCard].name,
+        uri: body.data[selectedCard].uri
+    };
 }
