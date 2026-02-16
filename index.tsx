@@ -33,12 +33,12 @@ async function getCreature(cmc: string) {
         
         return {
             name: pagedBody.data[pagedCard].name,
-            card_uri: pagedBody.data[pagedCard].uri
+            card_uri: pagedBody.data[pagedCard].scryfall_uri
         };    
     }
 
     return {
         name: body.data[selectedCard].name,
-        uri: body.data[selectedCard].uri
+        uri: body.data[selectedCard].scryfall_uri
     };
 }
