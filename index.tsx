@@ -6,7 +6,7 @@ if (process.argv.length < 3) {
 const cmc = process.argv[2];
 
 const reqUrl = new URL(baseUrl);
-reqUrl.searchParams.append('q', `in:paper cmc:${cmc}`);
+reqUrl.searchParams.append('q', `t:creature in:paper cmc:${cmc}`);
 
 const res = fetch(reqUrl, {
     method: 'GET'
