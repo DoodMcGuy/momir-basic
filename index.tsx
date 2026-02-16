@@ -2,6 +2,10 @@
 if (process.argv.length < 3) {
     throw Error('Missing CMC argument!');
 } 
+
+if (Number(process.argv[2]) > 16) {
+    console.log({});
+}
 getCreature(process.argv[2]).then((res) => console.log(res));
 
 async function getCreature(cmc: string) {
