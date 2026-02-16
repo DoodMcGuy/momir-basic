@@ -1,15 +1,17 @@
-const baseUrl = "https://api.scryfall.com/cards/search"
 
 if (process.argv.length < 3) {
     throw Error('Missing CMC argument!');
 } 
-const cmc = process.argv[2];
+getCreature(process.argv[2]).then((res) => console.log(res));
 
-const reqUrl = new URL(baseUrl);
-reqUrl.searchParams.append('q', `t:creature in:paper cmc:${cmc}`);
+async function getCreature(cmc: string) {
+    const baseUrl = "https://api.scryfall.com/cards/search"
+    const reqUrl = new URL(baseUrl);
+    reqUrl.searchParams.append('q', `t:creature in:paper cmc:${cmc}`);
 
-const res = fetch(reqUrl, {
-    method: 'GET'
-}).then((res) => {
-    res.json().then((res) => console.log(res));
-});
+    const res = await fetch(reqUrl, {
+        method: 'GET'
+    });
+
+    return await res.json();
+}
