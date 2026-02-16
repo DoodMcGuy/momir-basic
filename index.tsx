@@ -18,6 +18,6 @@ async function getCreature(cmc: string) {
     }
     
     const body = await res.json();
-    const selectedCard = Math.floor(Math.random() * body.total_cards + 1) + 1
+    const selectedCard = Math.floor(Math.random() * body.total_cards + 1) + 1;
     return selectedCard;
 }
