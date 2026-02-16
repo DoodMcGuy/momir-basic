@@ -1,10 +1,11 @@
+import { kill } from "process";
 
 if (process.argv.length < 3) {
     throw Error('Missing CMC argument!');
 } 
 
 if (Number(process.argv[2]) > 16) {
-    console.log({});
+    throw Error('Mana value too high, womp womp');
 }
 getCreature(process.argv[2]).then((res) => console.log(res));
 
