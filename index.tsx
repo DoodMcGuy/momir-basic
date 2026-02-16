@@ -13,6 +13,10 @@ async function getCreature(cmc: string) {
         method: 'GET'
     });
 
+    if (res.status !== 200) {
+        throw Error('Request to Scryfall failed');
+    }
+    
     const body = await res.json();
     const selectedCard = Math.floor(Math.random() * body.total_cards + 1) + 1
     return selectedCard;
