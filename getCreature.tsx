@@ -12,7 +12,7 @@ export default async function getCreature(cmc: string) {
     const body = await res.json();
 
     return {
-        name: body.data.name,
-        uri: body.data.scryfall_uri
+        name: body.name,
+        uri: body.scryfall_uri
     };
 }
