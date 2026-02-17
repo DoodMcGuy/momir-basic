@@ -1,5 +1,5 @@
 export default async function getCreature(cmc: string) {
-    const baseUrl = "https://api.scryfall.com/cards/search"
+    const baseUrl = "https://api.scryfall.com/cards/random"
     const reqUrl = new URL(baseUrl);
     reqUrl.searchParams.append('q', `t:creature in:paper cmc:${cmc}`);
 
@@ -10,26 +10,9 @@ export default async function getCreature(cmc: string) {
     }
     
     const body = await res.json();
-    const selectedCard = Math.floor(Math.random() * (body.total_cards - 1));
-    
-    // Scryfall API is paginated at 175 entries per page
-    if (selectedCard > 175) {
-        const page = Math.floor(selectedCard/175);
-        const pagedCard = selectedCard % 175;
-        
-        const pageRegex = /page=[1-9]?/gm;
-        const pagedUrl = body.next_page.replace(pageRegex, `page=${page}`);
-        const pagedRes = await fetch(new URL(pagedUrl), {method: 'GET'});
-        const pagedBody = await pagedRes.json();
-        
-        return {
-            name: pagedBody.data[pagedCard].name,
-            card_uri: pagedBody.data[pagedCard].scryfall_uri
-        };    
-    }
 
     return {
-        name: body.data[selectedCard].name,
-        uri: body.data[selectedCard].scryfall_uri
+        name: body.data.name,
+        uri: body.data.scryfall_uri
     };
 }
